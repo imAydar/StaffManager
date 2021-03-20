@@ -1,4 +1,4 @@
-# time-manager
+# staff-manager
 
 ## Project setup
 ```
