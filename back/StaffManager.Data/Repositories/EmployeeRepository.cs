@@ -8,39 +8,14 @@ using System.Threading.Tasks;
 
 namespace StaffManager.Data.Repositories
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
         private readonly ApplicationDBContext context;
 
-        public EmployeeRepository(ApplicationDBContext context)
+        public EmployeeRepository(ApplicationDBContext context):base(context)
         {
             this.context = context;
         }
-        public async Task<IEnumerable<Employee>> GetAllAsync() =>
-         await context.Set<Employee>().ToListAsync();
-
-        public async Task<Employee> GetByIdAsync(int id) =>
-            await context.Set<Employee>().FindAsync(id);
-
-        public async Task<Employee> CreateAsync(Employee employee)
-        {
-            await context.Set<Employee>().AddAsync(employee);
-            await context.SaveChangesAsync();
-            return employee;
-        }
-
-        public async Task<Employee> UpdateAsync(Employee employee)
-        {
-            context.Entry(employee).State = EntityState.Modified;
-            await context.SaveChangesAsync();
-            return employee;
-        }
-
-        public async Task<Employee> DeleteAsync(Employee employee)
-        {
-            context.Set<Employee>().Remove(employee);
-            await context.SaveChangesAsync();
-            return employee;
-        }
+        
     }
 }

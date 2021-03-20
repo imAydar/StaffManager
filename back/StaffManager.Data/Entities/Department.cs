@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace StaffManager.Data.Entities
@@ -17,6 +18,8 @@ namespace StaffManager.Data.Entities
 
         [NotMapped]
         public virtual int EmployeesCount { get; set; }
+
+        [JsonIgnore]
         public virtual ICollection<Employee> Employees { get; set; }
     }
 }
