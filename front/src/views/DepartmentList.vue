@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-  import axios from 'axios';
+  import  {http}  from '@/helpers/http-common';
   import DepartmentModal from '@/components/DepartmentModal.vue';
 
   export default {
@@ -65,7 +65,7 @@
       },
       deleteDepartment(id) {
         this.form = {id: id};//для удаления достаточно только id
-        axios.delete('/api/Department', {
+        http.delete('department', {
                     data: this.form
                 }).then(() => {
                     this.handleClose(); 
@@ -73,7 +73,7 @@
       },
       loadDepartments() {
         this.loadingTable = true;
-        axios.get('/api/department').then(response => {
+        http.get('/department').then(response => {
           this.departments = response.data;
           for(let i = 0; i < this.departments.length; i++){
             this.departments[i].salary = Math.round(this.departments[i].salary) + " руб."

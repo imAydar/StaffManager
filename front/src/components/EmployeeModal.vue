@@ -24,7 +24,7 @@
    </div>
 </template>
 <script>
-import axios from 'axios';
+import { http } from '@/helpers/http-common';
 
 export default {
     data(){
@@ -49,12 +49,8 @@ export default {
             if (!this.checkInputs())
                 return;
             if (this.form.id) { // если есть id значит мы редактируем
-                axios.put('/api/employee',
-                    JSON.stringify(this.form), {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }
+                http.put('employee',
+                    JSON.stringify(this.form)
                 ).then(() => { //если все хорошо закрываем модалку
                     this.handleClose();
                 }).catch((error) => {
@@ -63,12 +59,8 @@ export default {
                 });
             } else { // если нет id значит мы создаем
                 this.form.id = 0;
-                axios.post("/api/employee",
-                    JSON.stringify(this.form), {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }
+                http.post("employee",
+                    JSON.stringify(this.form)
                 ).then(() => {
                     this.handleClose();
                 }).catch((error) => {

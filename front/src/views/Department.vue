@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { http } from '@/helpers/http-common';
 import EmployeeModal from '@/components/EmployeeModal.vue';
 
 export default {
@@ -55,7 +55,7 @@ export default {
     },
     loadEmployees() {
       this.loadingTable = true;
-      axios.get('/api/Employee/' + this.$route.params.id)
+      http.get('employee/' + this.$route.params.id)
       .then(employees => {
         this.employees = employees.data;
           for(let i = 0; i < this.employees.length; i++){
@@ -75,7 +75,7 @@ export default {
     },
     deleteEmployee(employeeId) {
       this.form = {id: employeeId};//для удаления достаточно только id
-      axios.delete('/api/employee', {
+      http.delete('employee', {
                     data: this.form
                 }).then(() => {
                     this.handleClose(); 

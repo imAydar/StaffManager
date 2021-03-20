@@ -20,7 +20,7 @@
     </div>
 </template>
 <script>
-import axios from 'axios';
+import { http } from '@/helpers/http-common';
 
 export default {
     data(){
@@ -45,12 +45,8 @@ export default {
             if (!this.checkInputs())
                 return;
             if (this.form.id) { // если есть id значит мы редактируем
-                axios.put('/api/department',
-                    JSON.stringify(this.form), {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }
+                http.put('department',
+                    JSON.stringify(this.form)
                 ).then(() => { //если все хорошо закрываем модалку
                     this.handleClose();
                 }).catch((error) => {
@@ -59,12 +55,8 @@ export default {
                 });
             } else { // если нет id значит мы создаем
                 this.form.id = 0;
-                axios.post("http://localhost:5002/department",
-                    JSON.stringify(this.form), {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }
+                http.post("department",
+                    JSON.stringify(this.form)
                 ).then(() => {
                     this.handleClose();
                 }).catch((error) => {
