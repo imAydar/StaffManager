@@ -2,7 +2,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'http://localhost:5002',
+                target: 'https://staff-manager-lx.azurewebsites.net',
                 changeOrigin: true,
 				pathRewrite: {
 					'^/api': ''
