@@ -6,10 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StaffManager.Data\StaffManager.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\Interfaces" />
+    <ProjectReference Include="..\StaffManager.Infrastructure\StaffManager.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

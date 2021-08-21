@@ -2,7 +2,7 @@
 
 namespace StaffManager.Infrastructure.Models
 {
-    public class Employee
+    public class EmployeeDto
     {
         public int Id { get; set; }
 

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace StaffManager.Infrastructure.Models
 {
-    public class Department
+    public class DepartmentDto
     {
         public int Id { get; set; }
         
@@ -14,6 +14,6 @@ namespace StaffManager.Infrastructure.Models
         public virtual int EmployeesCount { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<EmployeeDto> Employees { get; set; }
     }
 }

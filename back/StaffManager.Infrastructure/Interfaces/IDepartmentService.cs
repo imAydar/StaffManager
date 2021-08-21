@@ -2,15 +2,15 @@
 using System.Threading.Tasks;
 using StaffManager.Infrastructure.Models;
 
-//using StaffManager.Data.Entities;
+using StaffManager.Data.Entities;
 
 namespace StaffManager.Infrastructure.Interfaces
 {
     public interface IDepartmentService
     {
-        Task<Department> CreateAsync(Department department);
-        Task<Department> DeleteAsync(Department department);
-        Task<IEnumerable<Department>> GetAllAsync();
-        Task<Department> UpdateAsync(Department department);
+        Task<IEnumerable<DepartmentDto>> GetAllAsync();
+        Task<DepartmentDto> CreateAsync(DepartmentDto departmentDto);
+        Task<DepartmentDto> DeleteAsync(DepartmentDto departmentDto);
+        Task<DepartmentDto> UpdateAsync(DepartmentDto departmentDto);
     }
 }

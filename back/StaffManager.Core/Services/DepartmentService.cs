@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StaffManager.Infrastructure.Interfaces;
+using StaffManager.Infrastructure.Models;
 
 namespace StaffManager.Core.Services
 {
@@ -17,7 +19,7 @@ namespace StaffManager.Core.Services
             this.departmentRepository = departmentRepository;
             this.employeeRepository = employeeRepository;
         }
-        public async Task<IEnumerable<Department>> GetAllAsync()
+        public async Task<IEnumerable<DepartmentDto>> GetAllAsync()
         {
             var result = await departmentRepository.GetAllAsync();
             var employees = await employeeRepository.GetAllAsync();
@@ -32,17 +34,17 @@ namespace StaffManager.Core.Services
             }
             return result;
         }
-        public async Task<Department> UpdateAsync(Department department)
+        public async Task<Department> UpdateAsync(DepartmentDto department)
         {
             return await departmentRepository.UpdateAsync(department);
         }
 
-        public async Task<Department> CreateAsync(Department department)
+        public async Task<Department> CreateAsync(DepartmentDto department)
         {
             return await departmentRepository.CreateAsync(department);
         }
 
-        public async Task<Department> DeleteAsync(Department department)
+        public async Task<Department> DeleteAsync(DepartmentDto department)
         {
             return await departmentRepository.DeleteAsync(department);
         }

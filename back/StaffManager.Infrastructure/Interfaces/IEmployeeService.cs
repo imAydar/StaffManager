@@ -1,14 +1,15 @@
-﻿using StaffManager.Data.Entities;
+﻿//using StaffManager.Data.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using StaffManager.Infrastructure.Models;
 
 namespace StaffManager.Core.Services
 {
     public interface IEmployeeService
     {
-        Task<Employee> CreateAsync(Employee employee);
-        Task<Employee> DeleteAsync(Employee employee);
-        Task<IEnumerable<Employee>> GetByDepartmentId(int departmentId);
-        Task<Employee> UpdateAsync(Employee employee);
+        Task<EmployeeDto> CreateAsync(EmployeeDto employeeDto);
+        Task<EmployeeDto> DeleteAsync(EmployeeDto employeeDto);
+        Task<IEnumerable<EmployeeDto>> GetByDepartmentId(int departmentId);
+        Task<EmployeeDto> UpdateAsync(EmployeeDto employeeDto);
     }
 }
