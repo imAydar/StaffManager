@@ -14,7 +14,7 @@ namespace StaffManager.Core
             if (exception.InnerException is PostgresException)
             {
                 var postgresEx = (PostgresException)exception.InnerException;
-                //return postgresEx.Code + " " + postgresEx.ColumnName;
+
                 switch (postgresEx.Code)
                 {
                     case "23505"://	unique_violation
@@ -23,9 +23,7 @@ namespace StaffManager.Core
                         return "Поле не может быть пустым " + postgresEx.ColumnName;
                 }
             }
-            return exception.InnerException == null ? 
-                exception.Message :
-                exception.InnerException.Message;
+            return exception.InnerException?.Message ?? exception.Message;
         }
 
         /// <summary>

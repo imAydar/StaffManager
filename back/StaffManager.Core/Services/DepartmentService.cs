@@ -14,7 +14,14 @@ namespace StaffManager.Core.Services
 {
     public class DepartmentService : IDepartmentService
     {
+        /// <summary>
+        /// Department repo.
+        /// </summary>
         private readonly IDepartmentRepository departmentRepository;
+
+        /// <summary>
+        /// Employee repo.
+        /// </summary>
         private readonly IEmployeeRepository employeeRepository;
 
         public DepartmentService(IDepartmentRepository departmentRepository, IEmployeeRepository employeeRepository)
@@ -23,32 +30,33 @@ namespace StaffManager.Core.Services
             this.employeeRepository = employeeRepository;
         }
 
-        public async Task<IEnumerable<DepartmentDto>> GetAllAsync()
+        ///<inheritdoc/>
+        public async IAsyncEnumerable<DepartmentDto> GetAllAsync()
         {
-            var result = new List<DepartmentDto>();
-            var departments =  (await departmentRepository.GetAllAsync())
+            var departments = (await departmentRepository.GetAllAsync())
                 .Select(x => x.ToDto());
-            var employeesQuery = employeeRepository.AsQueryable();
 
             foreach (var department in departments)
             {
-                var employees = await employeesQuery.Where(x => x.DepartmentId == department.Id)
-                    .ToListAsync();
+                var employees = await employeeRepository.GetAsync(x => x.DepartmentId == department.Id);
 
-                department.Salary = employees.Sum(x => x.Salary) / employees.Count;
-                department.EmployeesCount = employees.Count;
-                result.Add(department);
+                department.Salary = employees.Sum(x => x.Salary) / employees.Count();
+                department.EmployeesCount = employees.Count();
+                yield return department;
             }
-
-            return result;
         }
 
+        ///<inheritdoc/>
         public async Task<DepartmentDto> UpdateAsync(DepartmentDto department) =>
             (await departmentRepository.UpdateAsync(department.ToEntity())).ToDto();
 
+
+        ///<inheritdoc/>
         public async Task<DepartmentDto> CreateAsync(DepartmentDto department) =>
             (await departmentRepository.CreateAsync(department.ToEntity())).ToDto();
 
+
+        ///<inheritdoc/>
         public async Task<DepartmentDto> DeleteAsync(DepartmentDto department) =>
             (await departmentRepository.DeleteAsync(department.ToEntity())).ToDto();
     }

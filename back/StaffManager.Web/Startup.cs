@@ -77,6 +77,10 @@ namespace StaffManager.Web
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StaffManager.Web v1"));
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 

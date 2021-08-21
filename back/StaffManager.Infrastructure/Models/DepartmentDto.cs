@@ -9,9 +9,9 @@ namespace StaffManager.Infrastructure.Models
         
         public string Name { get; set; }
         
-        public virtual decimal Salary { get; set; }
+        public decimal Salary { get; set; }
         
-        public virtual int EmployeesCount { get; set; }
+        public int EmployeesCount { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<EmployeeDto> Employees { get; set; }

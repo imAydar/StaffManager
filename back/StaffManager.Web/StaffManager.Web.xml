@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StaffManager.Web</name>
+    </assembly>
+    <members>
+        <member name="M:StaffManager.Web.Controllers.DepartmentController.Get">
+            <summary>
+            Get collection of all DepartmentDtos.
+            </summary>
+            <returns>Collection of DepartmentDtos.</returns>
+        </member>
+        <member name="M:StaffManager.Web.Controllers.DepartmentController.Create(StaffManager.Infrastructure.Models.DepartmentDto)">
+            <summary>
+            Create DepartmentDto.
+            </summary>
+            <param name="DepartmentDto">DepartmentDto to create.</param>
+            <returns>Created DepartmentDto.</returns>
+        </member>
+        <member name="M:StaffManager.Web.Controllers.DepartmentController.Update(StaffManager.Infrastructure.Models.DepartmentDto)">
+            <summary>
+            Update DepartmentDto.
+            </summary>
+            <param name="DepartmentDto">DepartmentDto to update.</param>
+            <returns>Updated DepartmentDto.</returns>
+        </member>
+        <member name="M:StaffManager.Web.Controllers.DepartmentController.Delete(StaffManager.Infrastructure.Models.DepartmentDto)">
+            <summary>
+            Delete DepartmentDto.
+            </summary>
+            <param name="DepartmentDto">DepartmentDto to delete.</param>
+            <returns>Deleted DepartmentDto.</returns>
+        </member>
+        <member name="M:StaffManager.Web.Controllers.EmployeeController.GetByDepartmentId(System.Int32)">
+            <summary>
+            Gets collection of EmployeeDtos who works in department.
+            </summary>
+            <param name="departmentId">Deparment id.</param>
+            <returns>Collection of EmployeeDtos.</returns>
+        </member>
+        <member name="M:StaffManager.Web.Controllers.EmployeeController.Create(StaffManager.Infrastructure.Models.EmployeeDto)">
+            <summary>
+            Create EmployeeDto.
+            </summary>
+            <param name="EmployeeDto">EmployeeDto to create.</param>
+        </member>
+        <member name="M:StaffManager.Web.Controllers.EmployeeController.Update(StaffManager.Infrastructure.Models.EmployeeDto)">
+            <summary>
+            Update EmployeeDto.
+            </summary>
+            <param name="EmployeeDto">EmployeeDto to update.</param>
+        </member>
+        <member name="M:StaffManager.Web.Controllers.EmployeeController.Delete(StaffManager.Infrastructure.Models.EmployeeDto)">
+            <summary>
+            Delete EmployeeDto.
+            </summary>
+            <param name="EmployeeDto">EmployeeDto to delete.</param>
+        </member>
+    </members>
+</doc>

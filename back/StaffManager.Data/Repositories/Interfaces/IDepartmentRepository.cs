@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace StaffManager.Data.Repositories
 {
-    public interface IDepartmentRepository:IBaseRepository<Department>
+    public interface IDepartmentRepository : IBaseRepository<Department>
     {
     }
 }
