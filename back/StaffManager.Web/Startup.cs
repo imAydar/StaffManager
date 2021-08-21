@@ -46,6 +46,7 @@ namespace StaffManager.Web
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StaffManager.Web", Version = "v1" });
             });
+
             services.AddEntityFrameworkNpgsql().AddDbContext<ApplicationDBContext>(opt =>
                 opt.UseNpgsql(Configuration.GetConnectionString("StaffManagerConnectionString"),
                     b => b.MigrationsAssembly("StaffManager.Data")));

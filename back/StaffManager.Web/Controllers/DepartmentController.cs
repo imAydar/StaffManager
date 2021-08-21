@@ -19,8 +19,12 @@ namespace StaffManager.Web.Controllers
             this.service = service;
         }
 
+        /// <summary>
+        /// Get collection of all departments.
+        /// </summary>
+        /// <returns>Collection of departments.</returns>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<IEnumerable<Department>>> Get()
         {
             try
             {
@@ -31,12 +35,18 @@ namespace StaffManager.Web.Controllers
                 return BadRequest(PostgreCustomExceptionHandler.Handle(ex));
             }
         }
+        
+        /// <summary>
+        /// Create department.
+        /// </summary>
+        /// <param name="department">Department to create.</param>
+        /// <returns>Created department.</returns>
         [HttpPost]
-        public async Task<IActionResult> Create(Department entity)
+        public async Task<ActionResult<Department>> Create(Department department)
         {
             try
             {
-                var result = await service.CreateAsync(entity);
+                var result = await service.CreateAsync(department);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -45,12 +55,17 @@ namespace StaffManager.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// Update department.
+        /// </summary>
+        /// <param name="department">Department to update.</param>
+        /// <returns>Updated department.</returns>
         [HttpPut]
-        public async Task<IActionResult> Update(Department entity)
+        public async Task<ActionResult<Department>> Update(Department department)
         {
             try
             {
-                var result = await service.UpdateAsync(entity);
+                var result = await service.UpdateAsync(department);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -59,12 +74,17 @@ namespace StaffManager.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete department.
+        /// </summary>
+        /// <param name="department">Department to delete.</param>
+        /// <returns>Deleted department.</returns>
         [HttpDelete]
-        public async Task<IActionResult> Delete(Department entity)
+        public async Task<IActionResult> Delete(Department department)
         {
             try
             {
-                var result = await service.DeleteAsync(entity);
+                var result = await service.DeleteAsync(department);
                 return Ok(result);
             }
             catch (Exception ex)

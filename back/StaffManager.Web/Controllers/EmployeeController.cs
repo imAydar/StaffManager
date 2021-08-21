@@ -18,9 +18,14 @@ namespace StaffManager.Web.Controllers
         {
             this.service = service;
         }
-
+        
+        /// <summary>
+        /// Gets collection of employees who works in department.
+        /// </summary>
+        /// <param name="departmentId">Deparment id.</param>
+        /// <returns>Collection of employees.</returns>
         [HttpGet("{departmentId}")]
-        public async Task<IActionResult> GetByDepartmentId(int departmentId)
+        public async Task<ActionResult<IEnumerable<Employee>>> GetByDepartmentId(int departmentId)
         {
             try
             {
@@ -31,12 +36,17 @@ namespace StaffManager.Web.Controllers
                 return BadRequest(PostgreCustomExceptionHandler.Handle(ex));
             }
         }
+        
+        /// <summary>
+        /// Create employee.
+        /// </summary>
+        /// <param name="employee">Employee to create.</param>
         [HttpPost]
-        public async Task<IActionResult> Create(Employee entity)
+        public async Task<ActionResult<Employee>> Create(Employee employee)
         {
             try
             {
-                var result = await service.CreateAsync(entity);
+                var result = await service.CreateAsync(employee);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -44,13 +54,17 @@ namespace StaffManager.Web.Controllers
                 return BadRequest(PostgreCustomExceptionHandler.Handle(ex));
             }
         }
-
+        
+        /// <summary>
+        /// Update employee.
+        /// </summary>
+        /// <param name="employee">Employee to update.</param>
         [HttpPut]
-        public async Task<IActionResult> Update(Employee entity)
+        public async Task<ActionResult<Employee>> Update(Employee employee)
         {
             try
             {
-                var result = await service.UpdateAsync(entity);
+                var result = await service.UpdateAsync(employee);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -58,13 +72,17 @@ namespace StaffManager.Web.Controllers
                 return BadRequest(PostgreCustomExceptionHandler.Handle(ex));
             }
         }
-
+        
+        /// <summary>
+        /// Delete employee.
+        /// </summary>
+        /// <param name="employee">Employee to delete.</param>
         [HttpDelete]
-        public async Task<IActionResult> Delete(Employee entity)
+        public async Task<ActionResult<Employee>> Delete(Employee employee)
         {
             try
             {
-                var result = await service.DeleteAsync(entity);
+                var result = await service.DeleteAsync(employee);
                 return Ok(result);
             }
             catch (Exception ex)
