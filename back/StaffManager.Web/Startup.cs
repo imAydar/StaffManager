@@ -11,7 +11,9 @@ using Microsoft.OpenApi.Models;
 using StaffManager.Data;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using StaffManager.Core.Services;
 using StaffManager.Data.Repositories;
@@ -46,7 +48,13 @@ namespace StaffManager.Web
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StaffManager.Web", Version = "v1" });
+                
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
+            
+
 
             services.AddEntityFrameworkNpgsql().AddDbContext<ApplicationDBContext>(opt =>
                 opt.UseNpgsql(Configuration.GetConnectionString("StaffManagerConnectionString"),
@@ -68,6 +76,10 @@ namespace StaffManager.Web
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StaffManager.Web v1"));
+            }
+            else
+            {
+                app.UseHsts();
             }
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());

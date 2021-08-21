@@ -13,10 +13,10 @@ namespace StaffManager.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DepartmentDtoController : Controller
+    public class DepartmentController : BaseController
     {
         private readonly IDepartmentService service;
-        public DepartmentDtoController(IDepartmentService service)
+        public DepartmentController(IDepartmentService service)
         {
             this.service = service;
         }
@@ -26,11 +26,11 @@ namespace StaffManager.Web.Controllers
         /// </summary>
         /// <returns>Collection of DepartmentDtos.</returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DepartmentDto>>> Get()
+        public ActionResult<IAsyncEnumerable<DepartmentDto>> Get()
         {
             try
             {
-                return Ok(await service.GetAllAsync());
+                return Ok(service.GetAllAsync());
             }
             catch (Exception ex)
             {

@@ -12,10 +12,10 @@ namespace StaffManager.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class EmployeeDtoController : Controller
+    public class EmployeeController : BaseController
     {
         private readonly IEmployeeService service;
-        public EmployeeDtoController(IEmployeeService service)
+        public EmployeeController(IEmployeeService service)
         {
             this.service = service;
         }

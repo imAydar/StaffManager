@@ -4,12 +4,7 @@ using System.Threading.Tasks;
 
 namespace StaffManager.Data.Repositories
 {
-    public interface IEmployeeRepository:IBaseRepository<Employee>
+    public interface IEmployeeRepository : IBaseRepository<Employee>
     {
-        /*Task<Employee> CreateAsync(Employee employee);
-        Task<Employee> DeleteAsync(Employee employee);
-        Task<IEnumerable<Employee>> GetAllAsync();*/
-        //Task<Employee> GetByIdAsync(int id);
-        //Task<Employee> UpdateAsync(Employee employee);
     }
 }
