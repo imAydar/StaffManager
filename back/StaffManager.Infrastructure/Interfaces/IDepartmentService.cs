@@ -1,8 +1,10 @@
-﻿using StaffManager.Data.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using StaffManager.Infrastructure.Models;
 
-namespace StaffManager.Core.Services
+//using StaffManager.Data.Entities;
+
+namespace StaffManager.Infrastructure.Interfaces
 {
     public interface IDepartmentService
     {
