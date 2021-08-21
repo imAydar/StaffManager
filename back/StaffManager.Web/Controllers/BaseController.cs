@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StaffManager.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,12 @@ namespace StaffManager.Web.Controllers
 {
     public class BaseController : Controller
     {
-        public override BadRequestObjectResult BadRequest(object value)
-        {
-            return base.BadRequest(value);
-        }
+        /// <summary>
+        /// Overrided BadRequest method to have some additional logic.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public override BadRequestObjectResult BadRequest(object value) =>
+            base.BadRequest(PostgreCustomExceptionHandler.Handle((Exception)value));
     }
 }

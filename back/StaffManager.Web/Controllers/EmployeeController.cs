@@ -34,7 +34,7 @@ namespace StaffManager.Web.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(PostgreCustomExceptionHandler.Handle(ex));
+                return BadRequest(ex);
             }
         }
         
@@ -52,7 +52,7 @@ namespace StaffManager.Web.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(PostgreCustomExceptionHandler.Handle(ex));
+                return BadRequest(ex);
             }
         }
         
@@ -70,7 +70,7 @@ namespace StaffManager.Web.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(PostgreCustomExceptionHandler.Handle(ex));
+                return BadRequest(ex);
             }
         }
         
@@ -88,7 +88,7 @@ namespace StaffManager.Web.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.InnerException.Message ?? ex.Message);
+                return BadRequest(ex);
             }
         }
     }
