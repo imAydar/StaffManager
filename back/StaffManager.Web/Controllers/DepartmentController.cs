@@ -6,25 +6,27 @@ using System.Threading.Tasks;
 using StaffManager.Core.Services;
 using StaffManager.Core;
 using StaffManager.Data.Entities;
+using StaffManager.Infrastructure.Interfaces;
+using StaffManager.Infrastructure.Models;
 
 namespace StaffManager.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DepartmentController : Controller
+    public class DepartmentDtoController : Controller
     {
         private readonly IDepartmentService service;
-        public DepartmentController(IDepartmentService service)
+        public DepartmentDtoController(IDepartmentService service)
         {
             this.service = service;
         }
 
         /// <summary>
-        /// Get collection of all departments.
+        /// Get collection of all DepartmentDtos.
         /// </summary>
-        /// <returns>Collection of departments.</returns>
+        /// <returns>Collection of DepartmentDtos.</returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Department>>> Get()
+        public async Task<ActionResult<IEnumerable<DepartmentDto>>> Get()
         {
             try
             {
@@ -37,16 +39,16 @@ namespace StaffManager.Web.Controllers
         }
         
         /// <summary>
-        /// Create department.
+        /// Create DepartmentDto.
         /// </summary>
-        /// <param name="department">Department to create.</param>
-        /// <returns>Created department.</returns>
+        /// <param name="DepartmentDto">DepartmentDto to create.</param>
+        /// <returns>Created DepartmentDto.</returns>
         [HttpPost]
-        public async Task<ActionResult<Department>> Create(Department department)
+        public async Task<ActionResult<DepartmentDto>> Create(DepartmentDto DepartmentDto)
         {
             try
             {
-                var result = await service.CreateAsync(department);
+                var result = await service.CreateAsync(DepartmentDto);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -56,16 +58,16 @@ namespace StaffManager.Web.Controllers
         }
 
         /// <summary>
-        /// Update department.
+        /// Update DepartmentDto.
         /// </summary>
-        /// <param name="department">Department to update.</param>
-        /// <returns>Updated department.</returns>
+        /// <param name="DepartmentDto">DepartmentDto to update.</param>
+        /// <returns>Updated DepartmentDto.</returns>
         [HttpPut]
-        public async Task<ActionResult<Department>> Update(Department department)
+        public async Task<ActionResult<DepartmentDto>> Update(DepartmentDto DepartmentDto)
         {
             try
             {
-                var result = await service.UpdateAsync(department);
+                var result = await service.UpdateAsync(DepartmentDto);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -75,16 +77,16 @@ namespace StaffManager.Web.Controllers
         }
 
         /// <summary>
-        /// Delete department.
+        /// Delete DepartmentDto.
         /// </summary>
-        /// <param name="department">Department to delete.</param>
-        /// <returns>Deleted department.</returns>
+        /// <param name="DepartmentDto">DepartmentDto to delete.</param>
+        /// <returns>Deleted DepartmentDto.</returns>
         [HttpDelete]
-        public async Task<IActionResult> Delete(Department department)
+        public async Task<IActionResult> Delete(DepartmentDto DepartmentDto)
         {
             try
             {
-                var result = await service.DeleteAsync(department);
+                var result = await service.DeleteAsync(DepartmentDto);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -92,5 +94,9 @@ namespace StaffManager.Web.Controllers
                 return BadRequest(ex.InnerException.Message ?? ex.Message);
             }
         }
+    }
+
+    internal interface IDepartmentDtoService
+    {
     }
 }

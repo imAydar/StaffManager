@@ -6,26 +6,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using StaffManager.Infrastructure.Models;
 
 namespace StaffManager.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class EmployeeController : Controller
+    public class EmployeeDtoController : Controller
     {
         private readonly IEmployeeService service;
-        public EmployeeController(IEmployeeService service)
+        public EmployeeDtoController(IEmployeeService service)
         {
             this.service = service;
         }
         
         /// <summary>
-        /// Gets collection of employees who works in department.
+        /// Gets collection of EmployeeDtos who works in department.
         /// </summary>
         /// <param name="departmentId">Deparment id.</param>
-        /// <returns>Collection of employees.</returns>
+        /// <returns>Collection of EmployeeDtos.</returns>
         [HttpGet("{departmentId}")]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetByDepartmentId(int departmentId)
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetByDepartmentId(int departmentId)
         {
             try
             {
@@ -38,15 +39,15 @@ namespace StaffManager.Web.Controllers
         }
         
         /// <summary>
-        /// Create employee.
+        /// Create EmployeeDto.
         /// </summary>
-        /// <param name="employee">Employee to create.</param>
+        /// <param name="EmployeeDto">EmployeeDto to create.</param>
         [HttpPost]
-        public async Task<ActionResult<Employee>> Create(Employee employee)
+        public async Task<ActionResult<EmployeeDto>> Create(EmployeeDto EmployeeDto)
         {
             try
             {
-                var result = await service.CreateAsync(employee);
+                var result = await service.CreateAsync(EmployeeDto);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -56,15 +57,15 @@ namespace StaffManager.Web.Controllers
         }
         
         /// <summary>
-        /// Update employee.
+        /// Update EmployeeDto.
         /// </summary>
-        /// <param name="employee">Employee to update.</param>
+        /// <param name="EmployeeDto">EmployeeDto to update.</param>
         [HttpPut]
-        public async Task<ActionResult<Employee>> Update(Employee employee)
+        public async Task<ActionResult<EmployeeDto>> Update(EmployeeDto EmployeeDto)
         {
             try
             {
-                var result = await service.UpdateAsync(employee);
+                var result = await service.UpdateAsync(EmployeeDto);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -74,15 +75,15 @@ namespace StaffManager.Web.Controllers
         }
         
         /// <summary>
-        /// Delete employee.
+        /// Delete EmployeeDto.
         /// </summary>
-        /// <param name="employee">Employee to delete.</param>
+        /// <param name="EmployeeDto">EmployeeDto to delete.</param>
         [HttpDelete]
-        public async Task<ActionResult<Employee>> Delete(Employee employee)
+        public async Task<ActionResult<EmployeeDto>> Delete(EmployeeDto EmployeeDto)
         {
             try
             {
-                var result = await service.DeleteAsync(employee);
+                var result = await service.DeleteAsync(EmployeeDto);
                 return Ok(result);
             }
             catch (Exception ex)

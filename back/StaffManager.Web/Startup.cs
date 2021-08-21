@@ -15,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using StaffManager.Core.Services;
 using StaffManager.Data.Repositories;
+using StaffManager.Infrastructure.Interfaces;
 
 namespace StaffManager.Web
 {

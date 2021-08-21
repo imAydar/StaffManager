@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace StaffManager.Data.Repositories
@@ -14,6 +15,9 @@ namespace StaffManager.Data.Repositories
         }
         public async Task<IEnumerable<TEntity>> GetAllAsync() =>
          await context.Set<TEntity>().ToListAsync();
+
+        public IQueryable<TEntity> AsQueryable() => 
+            context.Set<TEntity>().AsQueryable();
 
         public async Task<TEntity> GetByIdAsync(int id) =>
             await context.Set<TEntity>().FindAsync(id);

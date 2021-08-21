@@ -17,7 +17,7 @@ namespace StaffManager.Data.Entities
 
         public int DepartmentId { get; set; }
 
-        /*[JsonIgnore]
-        public Department Department { get; set; }*/
+        [JsonIgnore]
+        public Department Department { get; set; }
     }
 }

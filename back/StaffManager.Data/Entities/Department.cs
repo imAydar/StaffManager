@@ -17,9 +17,8 @@ namespace StaffManager.Data.Entities
         public virtual decimal Salary { get; set; }
 
         [NotMapped]
-        public virtual int EmployeesCount { get; set; }
+        public virtual int EmployeesCount { get; set; }*/
 
-        [JsonIgnore]
-        public virtual ICollection<Employee> Employees { get; set; }*/
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }
